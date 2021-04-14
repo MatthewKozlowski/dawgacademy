@@ -1,0 +1,74 @@
+header {
+    display: flex;
+    background-color: white;
+    margin: auto;
+    height: 125px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    border-bottom: solid 1px white;
+    text-align: center;
+}
+
+h1 {
+    color: #2d2d2d;
+    margin: auto;
+    font-size: 95px;
+    font-family: 'Cabin', sans-serif;
+}
+
+nav {
+    display: flex; 
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin-top: 0;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    right: 0; 
+    top: 125px;  
+    background-color: #2d2d2d;
+    border-top: 5px solid white;
+}
+
+.links {
+    border-left: solid 2px white;
+    border-right: solid 2px white;
+    border-bottom: solid 2px white;
+}
+
+button,
+button:focus,
+button:active{
+	border:1px solid white;
+	background:none;
+	outline:none;
+	padding:0;
+}
+
+button span{
+	position: relative;
+}
+
+.navButtons {
+    width: 200px;
+    height: 50px;
+    background-color: #2d2d2d;
+    color: white;
+    font-size: 20px;
+    font-family: 'Old Standard TT', serif;
+    font-style: italic;
+}
+
+.navButtons:hover {
+    background-color: white;
+    color: #2d2d2d;
+    cursor: pointer;
+}
+
+
+body {
+    background-color: #2d2d2d;
+}
