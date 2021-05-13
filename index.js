@@ -5,12 +5,29 @@ function signup(){
         $('.Logo').remove();
         $('#pageContent').empty();
         $('#pageContent').append(`
-            <div id="emailCapture">If you would like to be notified when we launch, please leave your email address here.
-                <br /><br />
-                <input type="text" id="emailAddress" size="40"/>
-                <input type="button" id="btnSubmit" value="Submit"/>
-                <div style="padding:10px;margin:10px;" id="emailResponse"></div>
-             </div>`);
+            <div class="alert alert-success" role="alert" id="succ">
+                <p id="txt">
+                    <strong>Success!</strong> You have been signed up successfully!
+                </p>
+            </div>
+            <div class="alert " role="alert" id="fail">
+                <p id="txt">
+                    <strong>Sorry!</strong> You have entered an invalid E-mail.
+                </p>
+            </div>
+            <hgroup>
+                <h1>Subscribe</h1>
+            </hgroup>
+            <form id= "emailForm">
+                <div class="group">
+                    <input type="email" name="email_add"><span class="highlight"></span><span class="bar"></span>
+                    <label>Email</label>
+                </div>
+                <button value="submit" type="button" class="button buttonBlue" value= "submit_button" id="sub" onclick="saveToFirebase()">Subscribe
+                </button>
+            </form>
+        `);
+        event.preventDefault();
     })
 }
 
@@ -50,6 +67,41 @@ function reload(){
     $('#title').on('click', function(event){
         location.reload();
     })
+}
+
+function saveToFirebase(){
+    const data = document.getElementById('emailForm').elements[0].value;
+    if(ValidateEmail(data)){
+    database.ref('emails').push({ email: data}).then(function(snapshot) {
+      pass(); // some success method
+      }, function(error) 
+         {
+            console.log('error' + error);
+            fail(); // some error method
+          });
+     document.getElementById('frm1').reset();
+    }
+
+}
+
+function ValidateEmail(mail){
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail))
+        {
+          pass();
+          return (true);
+        }
+    else{
+          fail();
+          return (false);
+          }
+} 
+
+function fail(){
+    $('#fail').finish().show().delay(1000).fadeOut(6000);
+}
+
+function pass(){
+    $('#succ').finish().show().delay(1000).fadeOut(6000);
 }
 
 $(function(){
